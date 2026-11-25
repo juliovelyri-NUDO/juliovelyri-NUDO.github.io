@@ -1,0 +1,538 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Julio Velasco</title>
+  <meta name="description" content="Founder de NUDO, IA en consultoría y atleta híbrido. Mis proyectos, mis experimentos con IA y lo que aprendo siendo mi propio conejillo de indias." />
+  <meta name="theme-color" content="#0c0c0b" />
+  <meta property="og:title" content="Julio Velasco" />
+  <meta property="og:description" content="Construyo NUDO, llevo la IA en mi trabajo y preparo una maratón. Con una IA al lado en casi todo." />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="https://juliovelyri-nudo.github.io/og.jpg" />
+  <meta property="og:url" content="https://juliovelyri-nudo.github.io/" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+  <script>
+    try { var t = localStorage.getItem("jv-theme"); if (t) document.documentElement.dataset.theme = t; } catch (e) {}
+    document.documentElement.classList.add("js");
+  </script>
+</head>
+<body>
+  <div class="grain" aria-hidden="true"></div>
+
+  <!-- arranque -->
+  <div class="boot" id="boot" aria-hidden="true">
+    <button class="boot__skip" type="button">saltar</button>
+    <pre class="boot__log" id="bootLog"></pre>
+    <div class="boot__bar" id="bootBar"></div>
+  </div>
+
+  <!-- navegación -->
+  <header class="nav" id="nav">
+    <a class="nav__logo" href="#top" aria-label="Inicio"><i></i>julio velasco</a>
+    <ul class="nav__links" id="navLinks">
+      <li><a href="#sobre">Sobre mí</a></li>
+      <li><a href="#nudo">NUDO</a></li>
+      <li><a href="#maraton">Maratón</a></li>
+      <li><a href="#experimentos">Experimentos</a></li>
+      <li><a href="#metodo">Método</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul>
+    <div class="nav__tools">
+      <button class="icon-btn" id="termBtn" type="button" aria-label="Abrir terminal" title="Terminal (tecla º o ~)" data-icon="terminal-window"></button>
+      <button class="icon-btn" id="themeBtn" type="button" aria-label="Cambiar tema" data-icon="sun"></button>
+      <button class="icon-btn nav__menu" id="menuBtn" type="button" aria-label="Menú" aria-expanded="false" data-icon="list"></button>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- HERO -->
+    <section class="hero" aria-label="Presentación">
+      <canvas class="hero__field" id="field" aria-hidden="true"></canvas>
+      <div class="wrap hero__inner">
+        <div class="hero__copy">
+          <p class="hero__roles" aria-hidden="true"><span id="role">founder de NUDO</span></p>
+          <p class="hero__sub rv">Construyo una app, llevo la IA en mi trabajo y preparo mi primera maratón. <strong>Con una IA al lado en casi todo.</strong></p>
+          <div class="hero__ctas rv">
+            <a class="btn btn--acc magnet" href="#experimentos">Ver experimentos <span class="arr" data-icon="arrow-up-right"></span></a>
+            <a class="btn magnet" href="#contacto">Escríbeme</a>
+          </div>
+        </div>
+        <div class="hero__side">
+          <div class="capsule rv" aria-hidden="true">
+            <video src="./media/comba.mp4" poster="./media/comba.jpg" muted loop playsinline autoplay preload="metadata"></video>
+          </div>
+          <p class="status rv"><i class="pulse"></i><span>Maratón en <b id="daysLeft">17</b> días</span></p>
+        </div>
+        <h1 class="hero__name" id="heroName" aria-label="Julio">
+          <span class="l">J</span><span class="l">u</span><span class="l">l</span><span class="l">i</span><span class="l">o</span><span class="l l--dot">.</span>
+        </h1>
+      </div>
+    </section>
+
+    <!-- MANIFIESTO -->
+    <section class="manifesto" id="sobre" aria-label="Sobre mí">
+      <div class="wrap">
+        <p class="manifesto__text" id="manifesto">He vendido en la calle, he montado tiendas online y he trabajado en restaurantes. De día hago consultoría tecnológica y llevo la parte de IA de mi equipo. De noche construyo NUDO. Entre medias, entreno. No soy más listo que nadie. <span class="hl">Solo pruebo antes,</span> y casi siempre conmigo como conejillo de indias.</p>
+        <div class="manifesto__foot">
+          <div class="fact rv"><b data-count="75">75</b><span>días de la primera línea de código de NUDO a las tiendas</span></div>
+          <div class="fact rv"><b data-count="0">0</b><span>desarrolladores en nómina. Yo llevo el producto, la IA el código</span></div>
+          <div class="fact rv"><b data-count="535">535</b><span>km corridos desde agosto, con una rodilla que protesta</span></div>
+          <div class="fact rv"><b data-count="91">91</b><span>lecciones que estudió un portátil de 2015 mientras yo dormía</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- VERDAD O MENTIRA -->
+    <section class="sec vom" id="juego" aria-label="Verdad o mentira">
+      <div class="wrap vom__grid">
+        <div>
+          <h2 class="h2 rv">¿Verdad<br /><em>o mentira?</em></h2>
+          <p class="lead rv" style="margin-top:24px">Cosas que hago a diario y que a mí ya me parecen normales. A mi madre no tanto. Adivina cuáles son verdad.</p>
+          <p class="vom__score" id="vomScore" aria-live="polite"></p>
+        </div>
+        <div>
+          <div class="vom__deck" id="deck"></div>
+          <div class="vom__btns">
+            <button class="btn" type="button" id="btnLie">Mentira</button>
+            <button class="btn btn--acc" type="button" id="btnTrue">Verdad</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- NUDO -->
+    <section class="sec" id="nudo" aria-label="NUDO">
+      <div class="wrap">
+        <h2 class="h2 rv">Mi app.<br /><em>Mi otro trabajo.</em></h2>
+      </div>
+      <div class="wrap nudo__grid">
+        <div class="nudo__sticky">
+          <div style="position:relative">
+            <img class="nudo__logo" src="./nudo/logo-icon.png" alt="Logo de NUDO" width="86" height="86" />
+            <div class="phone">
+              <div class="phone__island"></div>
+              <div class="phone__screen" id="phone">
+                <img class="on" src="./nudo/home.jpg" alt="Pantalla de inicio de NUDO" />
+                <img src="./nudo/discover1.jpg" alt="Discover de NUDO con filtros Amistad, Entrenar y Pareja" loading="lazy" />
+                <img src="./nudo/perfil-ajeno.jpg" alt="Perfil completo de una persona en NUDO" loading="lazy" />
+                <img src="./nudo/conversacion.jpg" alt="Conversación en NUDO" loading="lazy" />
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="nudo__steps">
+          <article class="step" data-screen="0">
+            <span class="label">El problema</span>
+            <h3 class="h3">La gente que entrena no encuentra a gente como ella.</h3>
+            <p>Las apps de siempre te enseñan caras al azar que nunca te vas a cruzar. NUDO parte de otra pregunta: <strong>¿y si el match no fuera una cara, sino un hábito compartido?</strong></p>
+          </article>
+          <article class="step" data-screen="1">
+            <span class="label">Cómo funciona</span>
+            <h3 class="h3">Menos chat. Más plan.</h3>
+            <p>Dices qué deportes haces y a qué vienes: entrenar, amistad o pareja. Ves gente y planes cerca y quedáis en persona.</p>
+            <ul>
+              <li>Solo chateas con quien también te ha dicho que sí.</li>
+              <li>Sin swipe. El perfil se lee bajando, como una ficha. Nos lo pidieron los primeros usuarios.</li>
+              <li>Tu ubicación nunca se comparte: solo una distancia redondeada.</li>
+            </ul>
+          </article>
+          <article class="step" data-screen="2">
+            <span class="label">Cómo se hizo</span>
+            <h3 class="h3">De un prototipo sin código a iOS y Android.</h3>
+            <p>Empezó en mayo como prototipo en una herramienta sin código. En septiembre la reescribimos como app nativa con servidor propio. <strong>75 días</strong> de la primera línea a las tiendas, <strong>131 cambios propuestos</strong> y un techo de 40 $ al mes en infraestructura.</p>
+            <p>No necesitaba contratar a un desarrollador. Necesitaba dejar de ser la parte más lenta de mi propia empresa.</p>
+          </article>
+          <article class="step" data-screen="3">
+            <span class="label">Dónde está</span>
+            <h3 class="h3">Aprobada en App Store y Google Play.</h3>
+            <p>Apple dijo que sí el 18 de noviembre y Google el 23. Sale primero en España, empezando por Madrid. Ahora toca lo difícil: que la use gente de verdad.</p>
+            <div class="knot" id="knot" aria-label="Juego: junta los dos puntos para hacer un nudo">
+              <svg viewBox="0 0 520 230" preserveAspectRatio="none" aria-hidden="true">
+                <path id="rope" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" />
+                <circle id="pA" r="16" />
+                <circle id="pB" r="16" />
+              </svg>
+              <span class="knot__hint">Arrastra un punto hacia el otro</span>
+              <span class="knot__msg">Nudo hecho</span>
+            </div>
+            <p style="margin-top:22px"><a class="btn magnet" href="https://nudo.me" target="_blank" rel="noopener">Ver nudo.me <span class="arr" data-icon="arrow-up-right"></span></a></p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- MARATÓN -->
+    <section class="sec" id="maraton" aria-label="Preparación de la maratón">
+      <div class="wrap">
+        <div class="run__head">
+          <div>
+            <h2 class="h2 rv">Mi cuerpo,<br /><em>mi laboratorio.</em></h2>
+            <p class="lead rv" style="margin-top:24px">Preparo mi primera maratón con Claude como entrenador y analista. Registra cada sesión, recalcula el plan cada semana y me avisa cuando me paso. <strong>Yo no siempre le hago caso.</strong></p>
+          </div>
+          <div class="count rv"><b id="daysBig">17</b><span>días para la salida</span></div>
+        </div>
+
+        <div class="chart rv" id="chart">
+          <div class="chart__tip" id="chartTip"></div>
+        </div>
+        <div class="chart__legend">
+          <span><i style="background:var(--ink)"></i>km reales por semana</span>
+          <span><i style="border:1px dashed var(--line-2)"></i>lo que queda</span>
+          <button class="chip" type="button" id="ghostBtn" aria-pressed="false">Comparar con el plan</button>
+        </div>
+
+        <div class="loop">
+          <div class="rv"><span class="label">Yo registro</span><h4>Datos y sensaciones</h4><p>Cada día: reloj, anillo, gimnasio y cómo noto la rodilla del 1 al 10. Para correr hace falta un 8.</p></div>
+          <div class="rv"><span class="label">Claude cruza</span><h4>Patrones y planes</h4><p>Compara lo previsto con lo real, encuentra patrones y reescribe la semana. Si me equivoco dos veces, lo convierte en regla.</p></div>
+          <div class="rv"><span class="label">Yo decido</span><h4>Todo lo que importa</h4><p>La meta, cuándo parar, cuándo cambiar un rodaje por montaña. Y a veces correr 30 km cuando tocaban 26.</p></div>
+        </div>
+
+        <div class="timeline">
+          <div class="tl rv"><time>7 ago</time><p><b>La rodilla dice basta.</b>Se para todo. Nace la regla de las 24 horas.</p></div>
+          <div class="tl rv"><time>17 ago</time><p><b>6 minutos.</b>Lo que tardó Claude en montar el bloque entero en el calendario.</p></div>
+          <div class="tl rv is-hot"><time>20 sep</time><p><b>Reto de 50 km.</b>Paro a propósito en el km 32. Llegar entero a diciembre importa más.</p></div>
+          <div class="tl rv"><time>6 oct</time><p><b>La carrera cambia de fecha.</b>De 15 a 17 semanas. Solo se tocan las últimas.</p></div>
+          <div class="tl rv"><time>8 nov</time><p><b>35 km de ensayo.</b>3 horas y 16 minutos. La tirada más larga de mi vida.</p></div>
+          <div class="tl rv is-hot"><time>16-22 nov</time><p><b>Pico: 60,5 km.</b>La semana más dura. Piernas frescas al final.</p></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EXPERIMENTOS -->
+    <section class="sec" id="experimentos" aria-label="Experimentos" style="padding-bottom:0">
+      <div class="wrap exps__head">
+        <h2 class="h2 rv">Experimentos.<br /><em>Cosas que construyo para ver qué pasa.</em></h2>
+        <p class="lead rv" style="margin-top:24px">Proyectos pequeños hechos con Claude Code, casi siempre de noche. Algunos funcionan cada día. Otros me han enseñado más fallando. Todos se pueden tocar.</p>
+      </div>
+      <div class="wrap stack" id="stack">
+
+        <article class="exp">
+          <div class="exp__card">
+            <div class="exp__txt">
+              <div>
+                <div class="exp__top"><span>Editor de vídeo automático</span><span>en uso</span></div>
+                <h3 class="exp__title">Una frase y un vídeo. Sale un reel.</h3>
+                <p>Busca la toma en mi galería, corrige el color y coloca la frase donde no tape una cara. <strong>Yo pongo el estilo y las frases.</strong> Claude construyó el editor y lo revisa todo antes de enseñármelo.</p>
+                <p>Lo que aprendimos: colocar el texto es un problema de visión, no de diseño.</p>
+              </div>
+              <div class="exp__nums">
+                <div><b>50</b><span>vídeos en una noche</span></div>
+                <div><b>10</b><span>reels programados solos</span></div>
+                <div><b>0 €</b><span>de coste</span></div>
+              </div>
+            </div>
+            <div class="exp__lab">
+              <div class="lab__bar"><span>Pruébalo: escribe tu frase</span><span>formato texto sobre vídeo</span></div>
+              <div class="lab__body">
+                <div class="stb">
+                  <div class="stb__phone">
+                    <video id="stbVideo" src="./media/orilla.mp4" poster="./media/orilla.jpg" muted loop playsinline preload="none"></video>
+                    <div class="stb__text" id="stbText">No hay paz para el hombre
+que ha visto en qué
+puede convertirse.</div>
+                  </div>
+                  <div class="stb__ctrl">
+                    <label for="stbInput">Tu frase</label>
+                    <textarea id="stbInput" maxlength="90">No hay paz para el hombre que ha visto en qué puede convertirse.</textarea>
+                    <label>Toma</label>
+                    <div class="stb__clips" id="stbClips">
+                      <button class="chip" type="button" data-clip="orilla" aria-pressed="true">orilla</button>
+                      <button class="chip" type="button" data-clip="rocas" aria-pressed="false">rocas</button>
+                      <button class="chip" type="button" data-clip="correr" aria-pressed="false">correr</button>
+                      <button class="chip" type="button" data-clip="gym" aria-pressed="false">gimnasio</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="exp">
+          <div class="exp__card">
+            <div class="exp__txt">
+              <div>
+                <div class="exp__top"><span>Fábrica de clipping</span><span>fase 2</span></div>
+                <h3 class="exp__title">Un portátil de 2015 que corta vídeos largos en clips.</h3>
+                <p>Transcribe, puntúa los mejores momentos con un modelo de IA que corre en el propio portátil, corta a vertical y subtitula. Solo con campañas en las que el creador da permiso.</p>
+                <p><strong>El modelo propone. Nunca decide publicar.</strong> Ingresos hasta hoy: cero, y lo pongo igual.</p>
+              </div>
+              <div class="exp__nums">
+                <div><b>38 min</b><span>para 10 clips de un vídeo de 71</span></div>
+                <div><b>2</b><span>núcleos, sin tarjeta gráfica</span></div>
+                <div><b>0</b><span>tokens por vídeo</span></div>
+              </div>
+            </div>
+            <div class="exp__lab">
+              <div class="lab__bar"><span>Pruébalo: lanza la fábrica</span><span id="clipClock">00:00 / 71:00</span></div>
+              <div class="lab__body">
+                <div class="clip">
+                  <div class="clip__src" id="clipSrc"><div class="clip__scan" id="clipScan"></div></div>
+                  <div class="clip__out" id="clipOut"></div>
+                  <div class="clip__log" id="clipLog">Vídeo de 71 minutos en la cola.</div>
+                  <div class="clip__row"><button class="btn btn--acc" type="button" id="clipGo">Procesar vídeo</button><span class="small">Tú: 30 s para elegir 3 clips. Él: 38 min para 10, sin descanso.</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="exp">
+          <div class="exp__card">
+            <div class="exp__txt">
+              <div>
+                <div class="exp__top"><span>La Escuela</span><span>currículo terminado</span></div>
+                <h3 class="exp__title">El mismo portátil, de noche, se pone a estudiar.</h3>
+                <p>Ve cursos y vídeos de marca personal, guiones y startups. Toma apuntes, escribe lecciones y propone planes para mí y para NUDO. Por la mañana Claude hace de profe y corrige.</p>
+                <p>Le pillamos poniendo cifras que no estaban en el texto en 3 de 91 lecciones. <strong>Por eso a la máquina también se la verifica.</strong></p>
+              </div>
+              <div class="exp__nums">
+                <div><b>91</b><span>fuentes y lecciones</span></div>
+                <div><b>73.000 → 613</b><span>palabras de un curso</span></div>
+                <div><b>+24 h</b><span>bloqueados por YouTube</span></div>
+              </div>
+            </div>
+            <div class="exp__lab">
+              <div class="lab__bar"><span>Pruébalo: cambia la hora</span><button class="chip" type="button" id="nightBtn" aria-pressed="true">noche</button></div>
+              <div class="lab__body">
+                <div class="night" id="night">
+                  <canvas class="night__sky" id="sky" aria-hidden="true"></canvas>
+                  <div class="night__hud"><span id="nightClock">02:14</span><span id="nightState">estudiando</span></div>
+                  <div class="night__laptop" aria-hidden="true"><div class="scr" id="scr"></div><div class="base"></div></div>
+                  <div class="night__big"><span id="lessons">0</span><small>lecciones escritas</small></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="exp">
+          <div class="exp__card">
+            <div class="exp__txt">
+              <div>
+                <div class="exp__top"><span>La noche de los 17 agentes</span><span>25-26 oct</span></div>
+                <h3 class="exp__title">Me fui a dormir. 17 agentes auditaron mi app.</h3>
+                <p>Antes de mandar NUDO a las tiendas: ocho agentes revisan (seguridad, tiendas, despliegue, negocio), ocho arreglan y uno revisa a todos. Nadie puede aprobar su propio trabajo.</p>
+                <p>El revisor tumbó la propuesta de otro: un filtro tardaba 16,5 s con un texto largo y el límite era 15. <strong>Por la mañana, decido yo.</strong></p>
+              </div>
+              <div class="exp__nums">
+                <div><b>23:11</b><span>a las 7:28</span></div>
+                <div><b>27</b><span>propuestas en borrador</span></div>
+                <div><b>212/212</b><span>pruebas en verde</span></div>
+              </div>
+            </div>
+            <div class="exp__lab">
+              <div class="lab__bar"><span>Pruébalo: empieza la noche</span><span id="orqClock">23:11</span></div>
+              <div class="lab__body">
+                <div class="orq">
+                  <div class="orq__grid" id="orqGrid"></div>
+                  <div class="orq__gate" id="orqGate">
+                    <p id="orqMsg"><b>0 cambios</b> en producción sin permiso.</p>
+                    <div style="display:flex;gap:8px"><button class="btn" type="button" id="orqGo">Empezar</button><button class="btn" type="button" id="orqMerge"><span data-icon="lock-simple"></span> Publicar</button></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="exp">
+          <div class="exp__card">
+            <div class="exp__txt">
+              <div>
+                <div class="exp__top"><span>Correo automático</span><span>activo</span></div>
+                <h3 class="exp__title">Mi correo se revisa solo. Dos veces al día.</h3>
+                <p>A las 9:00 y a las 21:00 tira la basura, convierte lo importante en tareas y contesta lo rutinario. Lo delicado se queda en borrador para mí.</p>
+                <p><strong>Un correo es un dato, nunca una orden.</strong> Si uno intenta engañar a la IA, un guardián independiente bloquea el envío.</p>
+              </div>
+              <div class="exp__nums">
+                <div><b>9:00</b><span>y 21:00</span></div>
+                <div><b>40</b><span>hilos por pasada</span></div>
+                <div><b>0</b><span>borrados para siempre</span></div>
+              </div>
+            </div>
+            <div class="exp__lab">
+              <div class="lab__bar"><span>Pruébalo: lanza la pasada</span><span id="mailState">7 sin leer</span></div>
+              <div class="lab__body">
+                <div class="mail">
+                  <div class="mail__inbox" id="inbox"></div>
+                  <div class="mail__bins" id="bins"></div>
+                </div>
+              </div>
+              <div class="lab__bar" style="border-top:1px solid var(--line);border-bottom:0"><button class="btn btn--acc" type="button" id="mailGo" style="--h:42px">Pasada de las 9:00</button><span>correos de ejemplo, nunca reales</span></div>
+            </div>
+          </div>
+        </article>
+
+        <article class="exp">
+          <div class="exp__card">
+            <div class="exp__txt">
+              <div>
+                <div class="exp__top"><span>Panel de vida</span><span>v1.7, uso diario</span></div>
+                <h3 class="exp__title">Una pantalla para no abrir cinco apps cada mañana.</h3>
+                <p>Lee mis notas, el calendario y el tiempo. Elige cinco cosas para hoy: dos de NUDO, dos de contenido y una personal. Me dice cómo voy con la maratón.</p>
+                <p>Lo mejor que le he hecho ha sido quitarle cosas. Rachas, correo, alertas: fuera. <strong>Tres anclas: lo mínimo que hago sí o sí cada día.</strong></p>
+              </div>
+              <div class="exp__nums">
+                <div><b>9</b><span>versiones en 7 semanas</span></div>
+                <div><b>10 → 4</b><span>consultas (por día a por semana)</span></div>
+              </div>
+            </div>
+            <div class="exp__lab">
+              <div class="lab__bar"><span>Pruébalo: marca tus anclas</span><span id="lifeDate"></span></div>
+              <div class="lab__body">
+                <div class="life">
+                  <p class="life__quote" id="lifeQuote">Solvitur ambulando: se resuelve caminando.</p>
+                  <div class="anchors" id="anchors">
+                    <button class="anchor" type="button" aria-pressed="false"><small>ancla</small><b>Contenido</b></button>
+                    <button class="anchor" type="button" aria-pressed="false"><small>ancla</small><b>Movimiento</b></button>
+                    <button class="anchor" type="button" aria-pressed="false"><small>ancla</small><b>NUDO</b></button>
+                  </div>
+                  <div class="life__foot"><span id="lifeMsg">0 de 3. Aún hay día.</span><button class="chip" type="button" id="quoteBtn">Otra frase</button></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="exp">
+          <div class="exp__card">
+            <div class="exp__txt">
+              <div>
+                <div class="exp__top"><span>Limpia de fotos</span><span>3 tandas hechas</span></div>
+                <h3 class="exp__title">Miles de fotos. La máquina propone, yo borro.</h3>
+                <p>Detecta duplicadas, capturas y borrosas, y propone en qué álbum va cada una. Las favoritas son intocables.</p>
+                <p>No borra nada. Por código ni siquiera se puede borrar una foto de la biblioteca de Apple, <strong>y me parece perfecto: el último clic es humano.</strong></p>
+              </div>
+              <div class="exp__nums">
+                <div><b>442</b><span>fotos fuera en 3 tandas</span></div>
+                <div><b>105</b><span>duplicadas en 72 grupos</span></div>
+                <div><b>215 GB</b><span>de vídeo que solo vivía en la nube</span></div>
+              </div>
+            </div>
+            <div class="exp__lab">
+              <div class="lab__bar"><span>Pruébalo: revisa la galería</span><span id="phState">48 fotos</span></div>
+              <div class="lab__body">
+                <div class="photos">
+                  <div class="photos__grid" id="phGrid"></div>
+                  <div class="photos__res" id="phRes">Galería sin revisar.</div>
+                  <div class="clip__row"><button class="btn btn--acc" type="button" id="phGo">Revisar</button><button class="btn" type="button" id="phDel">Borrar todo</button></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="exp">
+          <div class="exp__card">
+            <div class="exp__txt">
+              <div>
+                <div class="exp__top"><span>Sesión Continua</span><span>en producción</span></div>
+                <h3 class="exp__title">Listas de pelis para terminarlas con amigos.</h3>
+                <p>Empezó con el orden de las pelis de Marvel. Marcas lo que ves y retas a tus amigos, que solo ven tu porcentaje, nunca los títulos.</p>
+                <p>Si buscas un perfil privado, la app responde que no existe. <strong>Confirmar que existe ya sería contar algo.</strong></p>
+              </div>
+              <div class="exp__nums">
+                <div><b>16</b><span>listas sugeridas</span></div>
+                <div><b>10</b><span>personas por lista</span></div>
+                <div><b>~0 €</b><span>al mes</span></div>
+              </div>
+            </div>
+            <div class="exp__lab">
+              <div class="lab__bar"><span>Pruébalo: echa una carrera</span>
+                <span style="display:flex;gap:6px"><button class="chip" type="button" data-mode="comp" aria-pressed="true">competición</button><button class="chip" type="button" data-mode="coop" aria-pressed="false">objetivo común</button></span>
+              </div>
+              <div class="lab__body">
+                <div class="race" id="race" style="width:100%"></div>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- MÉTODO -->
+    <section class="sec" id="metodo" aria-label="Cómo trabajo con IA">
+      <div class="wrap">
+        <h2 class="h2 rv">Cómo trabajo<br /><em>con la IA.</em></h2>
+        <div class="bento">
+          <div class="b b--1 rv">
+            <video src="./media/laptop.mp4" poster="./media/laptop.jpg" muted loop playsinline preload="none" data-autoplay aria-hidden="true"></video>
+            <div class="b__over"><h3>Yo dirijo. Claude ejecuta.</h3><p>Mi trabajo es decidir qué se construye y por qué. El código, los informes y las mil tareas pequeñas los hace la IA. Menos ser el mejor con las herramientas. Más ser el mejor tomando decisiones.</p></div>
+          </div>
+          <div class="b b--2 rv"><h3>Si algo es ambiguo, no adivines.</h3><p>La primera regla que le doy a cualquier agente. Mejor una pregunta en el informe que una suposición en producción.</p></div>
+          <div class="b b--3 rv"><h3>De noche trabaja. De día decido.</h3><p>Lo pesado se lanza antes de dormir. Por la mañana leo informes, no logs.</p></div>
+          <div class="b b--4 rv"><h3>Mis datos, en casa.</h3><p>Lo repetitivo y lo privado corre en un portátil viejo con modelos abiertos. Sin coste por uso y sin mandar fuera nada que no haga falta. Por eso aquí no verás un correo, un nombre ni una clave.</p></div>
+          <div class="b b--5 rv"><h3>Todo queda escrito.</h3><p>Cada experimento tiene su página, su bitácora y sus errores con fecha. Si mañana cambio de idea, sé por qué tomé la anterior.</p></div>
+          <div class="b b--6 rv">
+            <div><span class="big">0</span><p style="margin-top:12px">cosas en producción sin mi permiso. Ninguna IA puede publicar, fusionar código, enviar correos, borrar ni gastar dinero sin pasar por mí.</p></div>
+            <span class="lock">publicar · fusionar · enviar · borrar · gastar = solo Julio</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- LO QUE ME GUSTA -->
+    <section class="sec likes" aria-label="Lo que me gusta" style="padding-top:40px">
+      <div class="marquee" id="marquee" aria-label="Correr, HYROX, calistenia, gimnasio, agua fría, baloncesto, construir cosas, inteligencia artificial, estoicos">
+        <span>Correr</span><span>HYROX</span><span>Calistenia</span><span>agua fría</span><span>Gimnasio</span><span>baloncesto</span><span>Construir cosas</span><span>los estoicos</span><span>IA</span><span>madrugar (a veces)</span>
+      </div>
+      <div class="wrap">
+        <div class="reel">
+          <figure class="rv"><video src="./media/barras.mp4" poster="./media/barras.jpg" muted loop playsinline preload="none" data-autoplay></video><figcaption>Atleta híbrido. Para qué ser bueno en una cosa si puedes ser malo en muchas.</figcaption></figure>
+          <figure class="rv"><video src="./media/gym.mp4" poster="./media/gym.jpg" muted loop playsinline preload="none" data-autoplay></video><figcaption>Entreno los días en que el trabajo se come el calendario.</figcaption></figure>
+          <figure class="rv"><video src="./media/playa.mp4" poster="./media/playa.jpg" muted loop playsinline preload="none" data-autoplay></video><figcaption>Agua fría. Desde un Erasmus en Annecy.</figcaption></figure>
+          <figure class="rv"><video src="./media/rocas.mp4" poster="./media/rocas.jpg" muted loop playsinline preload="none" data-autoplay></video><figcaption>Lo demás se resuelve caminando.</figcaption></figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- APRENDIDO -->
+    <section class="sec" id="aprendido" aria-label="Lo aprendido" style="padding-top:40px">
+      <div class="wrap" style="display:flex;justify-content:space-between;align-items:end;gap:24px;flex-wrap:wrap">
+        <h2 class="h2 rv">Lo que aprendí<br /><em>siendo el conejillo.</em></h2>
+        <div class="lessons__nav"><button class="icon-btn" type="button" id="lPrev" aria-label="Anterior">←</button><button class="icon-btn" type="button" id="lNext" aria-label="Siguiente">→</button></div>
+      </div>
+      <div class="lessons" id="lessons">
+        <article class="lesson"><h3>El plan ideal no es el punto de partida.</h3><p>Mi Excel de julio pedía 55 km a la semana. Corría 3. Lo que funcionó empezó con tres pruebas de 5 km.</p></article>
+        <article class="lesson"><h3>Cambiar un dato en un sitio no lo cambia en los demás.</h3><p>La maratón se movió al 13 de diciembre y mi calendario siguió anunciando la semana de carrera en noviembre. Mi propio panel también.</p></article>
+        <article class="lesson"><h3>Que los datos lo vean no cambia el hábito.</h3><p>Claude me avisó cinco semanas de que mis rodajes suaves no eran suaves. Hasta que no fue una regla dura, nada.</p></article>
+        <article class="lesson"><h3>Densidad, no volumen.</h3><p>La rodilla no se quejó por los kilómetros. Se quejó por tres días seguidos de carga. Querer tenerlo todo a la vez también cansa.</p></article>
+        <article class="lesson"><h3>Verifica a la máquina.</h3><p>La Escuela dijo «50 de 50» y faltaban 24 vídeos y un curso de 6 horas. Ahora comparo lo planeado con lo hecho antes de decir «terminado».</p></article>
+        <article class="lesson"><h3>La máquina propone. Yo decido.</h3><p>Ninguna IA publica, borra ni gasta sin mí. No por miedo. Porque la responsabilidad no se delega.</p></article>
+        <article class="lesson"><h3>Algo mediocre en el mundo real enseña más que algo perfecto en Notion.</h3><p>Lo escribí cuando lancé el primer prototipo de NUDO en 30 días. Lo sigo pensando.</p></article>
+        <article class="lesson"><h3>Medir cansa.</h3><p>Pausé el registro de sueño un mes. Mejor un registro que puedo sostener que uno perfecto que abandono.</p></article>
+        <article class="lesson"><h3>Las metas bajan con los datos. Y no pasa nada.</h3><p>De 3:30 a 3:45. Ser tu propio conejillo de indias es aceptar lo que dicen tus propias tiradas.</p></article>
+      </div>
+    </section>
+
+    <!-- CONTACTO -->
+    <section class="contact" id="contacto" aria-label="Contacto">
+      <div class="wrap">
+        <h2 class="contact__big" id="contactBig"><span>Hablemos</span><span class="acc">.</span></h2>
+        <p class="lead" style="margin-top:28px">Si estás construyendo algo, entrenando para algo o te ha picado la curiosidad con algún experimento, escríbeme. Contesto yo, no un agente.</p>
+        <div class="links">
+          <a class="link" href="https://www.linkedin.com/in/julio-velasco-yribarren" target="_blank" rel="noopener"><div><span>trabajo y proyectos</span><b>LinkedIn</b></div><span data-icon="arrow-up-right"></span></a>
+          <a class="link" href="https://www.instagram.com/juliovelyri/" target="_blank" rel="noopener"><div><span>día a día y entrenos</span><b>Instagram</b></div><span data-icon="arrow-up-right"></span></a>
+          <a class="link" href="https://nudo.me" target="_blank" rel="noopener"><div><span>la app</span><b>NUDO</b></div><span data-icon="arrow-up-right"></span></a>
+        </div>
+        <footer class="foot">
+          <p>Diseñada y programada por Claude en una noche, mientras yo dormía. Yo la vi por la mañana, como tú. <button type="button" id="footTerm">Abre la terminal</button> si quieres curiosear.</p>
+          <p>© 2026 Julio Velasco</p>
+        </footer>
+      </div>
+    </section>
+  </main>
+
+  <!-- terminal -->
+  <div class="term" id="term" role="dialog" aria-label="Terminal" aria-hidden="true">
+    <div class="term__bar"><span>julio@laboratorio ~</span><button type="button" id="termClose">cerrar</button></div>
+    <div class="term__out" id="termOut"></div>
+    <form class="term__in" id="termForm" autocomplete="off"><span>❯</span><input id="termInput" aria-label="Comando" spellcheck="false" /></form>
+  </div>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>
