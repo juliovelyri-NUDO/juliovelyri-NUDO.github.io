@@ -1,14 +1,14 @@
 import gsap from "gsap";
 
 const CARDS = [
-  { q: "Un portátil de 2015 estudia por mí mientras duermo.", t: true, a: "91 fuentes y 91 lecciones con modelos de IA que corren en el propio portátil, sin coste por uso. Por la mañana, Claude le corrige los deberes." },
+  { q: "Un portátil de 2015 estudia por mí por las noches.", t: true, a: "91 fuentes y 91 lecciones con una IA que vive en el propio portátil, sin coste por uso. Por la mañana, Claude le corrige los deberes." },
+  { q: "NUDO la diseñó una agencia.", t: false, a: "La diseñamos Claude y yo. Una agencia no cabría en un techo de 40 $ al mes." },
   { q: "NUDO no tiene ni un desarrollador en nómina.", t: true, a: "Yo llevo el producto y Claude escribe el código. 75 días desde la primera línea hasta enviarla a las tiendas." },
   { q: "Tengo un robot que va al gimnasio por mí.", t: false, a: "Eso todavía lo hago yo. 56 sesiones de fuerza y HYROX desde agosto. Ojalá." },
-  { q: "Una noche, 17 agentes de IA auditaron mi app mientras yo dormía.", t: true, a: "De 23:11 a 7:28. Dejaron 27 propuestas y ninguno podía aprobar su propio trabajo. Por la mañana decidí yo." },
   { q: "Mi correo se revisa solo dos veces al día.", t: true, a: "A las 9:00 y a las 21:00. Tira la basura, crea tareas y contesta lo rutinario. Si un correo intenta engañar a la IA, un guardián lo bloquea." },
   { q: "Corrí 30 km un día que el plan decía 26.", t: true, a: "Lo llamé desobediencia. Claude lo convirtió en regla: los tres primeros kilómetros, nunca más rápido de 5:25." },
+  { q: "Mis agentes publican en mis redes sin preguntarme.", t: false, a: "Pueden dejarlo todo preparado y programado. El sí final siempre es mío." },
   { q: "50 vídeos se montaron en una noche sin que yo abriera un editor.", t: true, a: "Claude manejó la app de edición de Instagram por mí. Yo los revisé por la mañana y descarté dos." },
-  { q: "Esta web la hizo una IA mientras yo dormía.", t: true, a: "Le dejé un mensaje antes de acostarme. Diseño, código, textos y publicación. La vi al despertarme, igual que tú ahora." },
 ];
 
 export function initVom({ reduce }) {
@@ -49,7 +49,7 @@ export function initVom({ reduce }) {
     const go = () => {
       i++;
       if (i >= CARDS.length) {
-        deck.innerHTML = `<div class="card"><div class="card__n"><span>resultado</span></div><p class="card__q">${ok} de ${CARDS.length}. ${ok >= 7 ? "Me conoces mejor que mi calendario." : ok >= 5 ? "Nada mal para no conocerme." : "Normal. A mí también me cuesta creérmelo."}</p><p class="card__a" style="display:block">Siete eran verdad. Lo del robot, todavía no.</p></div>`;
+        deck.innerHTML = `<div class="card"><div class="card__n"><span>resultado</span></div><p class="card__q">${ok} de ${CARDS.length}. ${ok >= 7 ? "Me conoces mejor que mi calendario." : ok >= 5 ? "Nada mal para no conocerme." : "Normal. A mí también me cuesta creérmelo."}</p><p class="card__a" style="display:block">${CARDS.filter((c) => c.t).length} eran verdad. Ni robot, ni agencia, ni agentes con permiso para publicar.</p></div>`;
         bT.textContent = "Otra vez"; bL.style.display = "none";
         return;
       }

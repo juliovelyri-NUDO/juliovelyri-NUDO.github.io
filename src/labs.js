@@ -46,9 +46,9 @@ function clipping(reduce) {
   const hits = $$(".clip__hit", src), outs = $$("div", out);
   let running = false;
   const steps = [
-    [0.0, "Transcribiendo palabra a palabra en local…"],
-    [0.3, "Puntuando momentos con el modelo pequeño (6 tokens por segundo, paciencia)…"],
-    [0.62, "Cortando a 9:16 y poniendo subtítulos…"],
+    [0.0, "Escuchando el vídeo palabra a palabra, sin salir de casa…"],
+    [0.3, "Puntuando los mejores momentos (va lento, paciencia)…"],
+    [0.62, "Cortando en vertical y poniendo subtítulos…"],
     [0.98, "Listo: 10 clips en la carpeta. Ahora decide una persona."],
   ];
   go.addEventListener("click", async () => {
@@ -72,7 +72,7 @@ function clipping(reduce) {
 
 /* ---------- la escuela: el portátil que estudia de noche ---------- */
 function night(reduce) {
-  const box = $("#night"), sky = $("#sky"), btn = $("#nightBtn"), clock = $("#nightClock"), state = $("#nightState"), scr = $("#scr"), lessons = $("#lessons");
+  const box = $("#night"), sky = $("#sky"), btn = $("#nightBtn"), clock = $("#nightClock"), state = $("#nightState"), scr = $("#scr"), lessons = $("#lessonCount");
   const ctx = sky.getContext("2d");
   let isNight = true, count = 0, stars = [], visible = false, t = 0, minute = 134;
   const NOTES = [
@@ -140,14 +140,14 @@ function orquesta(reduce) {
   const setClock = (m) => { clock.textContent = `${String(Math.floor(m / 60) % 24).padStart(2, "0")}:${String(m % 60).padStart(2, "0")}`; };
   go.addEventListener("click", async () => {
     if (running) return; running = true; go.disabled = true;
-    cells.forEach((c) => { c.classList.remove("done"); c.style.setProperty("--p", "0%"); });
+    cells.forEach((c) => { c.classList.remove("done"); c.style.setProperty("--p", "0"); });
     const start = 23 * 60 + 11, end = 24 * 60 + 7 * 60 + 28;
     const o = { m: start };
     const dur = reduce ? 0.01 : 7;
     gsap.to(o, { m: end, duration: dur, ease: "none", onUpdate: () => setClock(Math.round(o.m)) });
     const wave = (from, to, d0, d1) => cells.slice(from, to).forEach((c) => {
       const p = { v: 0 };
-      gsap.to(p, { v: 100, duration: reduce ? 0.01 : d1 * (0.6 + Math.random() * 0.4), delay: reduce ? 0 : d0, ease: "none", onUpdate: () => c.style.setProperty("--p", `${p.v}%`), onComplete: () => c.classList.add("done") });
+      gsap.to(p, { v: 100, duration: reduce ? 0.01 : d1 * (0.6 + Math.random() * 0.4), delay: reduce ? 0 : d0, ease: "none", onUpdate: () => c.style.setProperty("--p", `${p.v / 100}`), onComplete: () => c.classList.add("done") });
     });
     wave(0, 8, 0, 2.4); wave(8, 16, 2.6, 3); wave(16, 17, 5.8, 1.1);
     await sleep(dur * 1000 + 100);
@@ -175,14 +175,14 @@ function mail(reduce) {
   const BINS = { trash: "Papelera (rescatable)", task: "Tarea en Notion", reply: "Respondido", julio: "Para Julio", block: "Bloqueado por el guardián" };
   const reset = () => {
     inbox.innerHTML = MAILS.map((m, i) => `<div class="mail__item" data-i="${i}"><i></i><span>${m.s}</span></div>`).join("");
-    bins.innerHTML = Object.entries(BINS).map(([k, v]) => `<div class="bin ${k === "julio" ? "bin--j" : ""}" data-b="${k}"><h5><span>${v}</span><span class="n">0</span></h5><div class="dots"></div></div>`).join("");
+    bins.innerHTML = Object.entries(BINS).map(([k, v]) => `<div class="bin ${k === "julio" ? "bin--j" : ""}" data-b="${k}"><div class="bin__h"><span>${v}</span><span class="n">0</span></div><div class="dots"></div></div>`).join("");
     st.textContent = `${MAILS.length} sin leer`;
   };
   reset();
   let running = false;
   go.addEventListener("click", async () => {
     if (running) return; running = true; go.disabled = true;
-    if (!inbox.children.length) reset();
+    if (!inbox.querySelector(".mail__item")) reset();
     const items = $$(".mail__item", inbox);
     for (const it of items) {
       const m = MAILS[+it.dataset.i];
@@ -193,10 +193,11 @@ function mail(reduce) {
       $(".n", bin).textContent = $(".dots", bin).children.length;
       if (!reduce) gsap.from(dot, { scale: 0, duration: 0.4, ease: "back.out(3)" });
       if (m.b === "block" && !reduce) { bin.classList.remove("shake"); void bin.offsetWidth; bin.classList.add("shake"); }
-      st.textContent = `${inbox.children.length} sin leer`;
+      st.textContent = `${inbox.querySelectorAll(".mail__item").length} sin leer`;
       await sleep(reduce ? 0 : 160);
     }
     st.textContent = "resumen enviado a Julio";
+    inbox.innerHTML = '<p class="small" style="margin:0">Bandeja a cero. Lo tirado sale en el resumen, por si hay que rescatar algo.</p>';
     running = false; go.disabled = false; go.textContent = "Pasada de las 21:00";
   });
 }
@@ -209,8 +210,8 @@ function life(reduce) {
     "Cuando se pone difícil, no busco hacerlo más fácil.",
     "En los días malos, recuerda por quién lo haces.",
     "Las bocas cerradas no comen.",
-    "No estás loco por trabajar duro.",
-    "Toma decisiones incómodas. Tu comodidad te está saboteando.",
+    "El obstáculo es el camino.",
+    "Hazlo aunque salga regular.",
     "No importa cuánto tiempo hayas perdido. Salva el resto.",
   ];
   const q = $("#lifeQuote"), msg = $("#lifeMsg");
@@ -283,9 +284,9 @@ function race(reduce) {
     films.innerHTML = FILMS.map((f, i) => `<button class="chip" type="button" data-i="${i}" aria-pressed="${i < me}">${f}</button>`).join("");
     $$(".chip", films).forEach((b) => b.addEventListener("click", () => tick(+b.dataset.i)));
     $("#rMe", box).textContent = `${me} de 6`;
-    $("#rMeBar", box).style.width = `${(me / 6) * 100}%`;
+    $("#rMeBar", box).style.transform = `scaleX(${me / 6})`;
     $("#rRiv", box).textContent = `${Math.round((rival / 6) * 100)} %`;
-    $("#rRivBar", box).style.width = `${(rival / 6) * 100}%`;
+    $("#rRivBar", box).style.transform = `scaleX(${rival / 6})`;
   };
   const end = (text) => { over = true; clearInterval(timer); timer = null; $("#rMsg", box).textContent = text; };
   const check = () => {

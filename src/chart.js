@@ -64,11 +64,10 @@ export function initChart({ reduce }) {
   const bars = [...host.querySelectorAll(".bar")];
   const anns = host.querySelectorAll(".ann line, .ann text");
   if (!reduce) {
-    gsap.set(bars, { scaleY: 0, transformOrigin: "50% 100%", transformBox: "fill-box" });
+    const base = y(0);
+    gsap.from(bars, { attr: { y: base, height: 0 }, duration: 1, ease: "expo.out", stagger: 0.04, scrollTrigger: { trigger: host, start: "top 75%", once: true } });
     gsap.set(anns, { opacity: 0 });
-    gsap.timeline({ scrollTrigger: { trigger: host, start: "top 80%", end: "bottom 60%", scrub: 0.6 } })
-      .to(bars, { scaleY: 1, ease: "power2.out", stagger: 0.06, duration: 0.5 })
-      .to(anns, { opacity: 1, stagger: 0.03, duration: 0.2 }, 0.4);
+    gsap.to(anns, { opacity: 1, stagger: 0.03, delay: 0.8, duration: 0.3, scrollTrigger: { trigger: host, start: "top 75%", once: true } });
   }
 
   bars.forEach((b) => {

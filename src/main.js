@@ -113,7 +113,6 @@ function boot() {
   const lines = [
     ["> despertando al sujeto", "julio"],
     ["> café", "ok"],
-    ["> rodilla", "8/10, se puede correr"],
     ["> agentes nocturnos", "han dejado informes"],
     ["> km esta semana", "en el registro"],
     ["> estado", "en pruebas"],
@@ -173,7 +172,7 @@ function initHeroName() {
 
 /* ---------- hero: roles que rotan ---------- */
 function initRoles() {
-  const roles = ["founder de NUDO", "IA en consultoría", "atleta híbrido", "conejillo de indias profesional", "director de agentes nocturnos"];
+  const roles = ["founder de NUDO", "IA en consultoría", "atleta híbrido", "conejillo de indias", "jefe de agentes nocturnos"];
   const el = $("#role");
   let i = 0;
   if (reduce) return;
@@ -222,9 +221,9 @@ function initField() {
         p.x += p.vx; p.y += p.vy;
         const disp = Math.min(1, Math.hypot(p.x - p.ox, p.y - p.oy) / 18);
         const wave = reduce ? 0 : (Math.sin(p.ox * 0.012 + t * 3) + Math.cos(p.oy * 0.015 - t * 2)) * 0.5;
-        ctx.globalAlpha = 0.1 + disp * 0.7 + Math.max(0, wave) * 0.06;
+        ctx.globalAlpha = 0.17 + disp * 0.7 + Math.max(0, wave) * 0.08;
         ctx.fillStyle = disp > 0.25 ? acc : color;
-        const s = 1.1 + disp * 1.8;
+        const s = 1.5 + disp * 1.8;
         ctx.fillRect(p.x - s / 2, p.y - s / 2, s, s);
       }
       ctx.globalAlpha = 1;
@@ -308,7 +307,7 @@ function initKnot() {
     const sag = Math.max(0, 140 - d * 0.25);
     if (d < 70) {
       // el nudo: un lazo doble alrededor del punto medio
-      const r = 26 + Math.sin(t) * 2;
+      const r = 40 + Math.sin(t) * 3;
       rope.setAttribute("d", `M ${pa.x} ${pa.y} C ${mx - 60} ${my - 60}, ${mx + r} ${my - r * 1.6}, ${mx + r} ${my} S ${mx - r * 1.4} ${my + r * 1.3}, ${mx - r} ${my} S ${mx + r * 1.6} ${my - r * 1.2}, ${mx} ${my + r * .4} C ${mx + 30} ${my + 60}, ${pb.x + 40} ${pb.y + 40}, ${pb.x} ${pb.y}`);
     } else {
       rope.setAttribute("d", `M ${pa.x} ${pa.y} Q ${mx} ${my + sag} ${pb.x} ${pb.y}`);

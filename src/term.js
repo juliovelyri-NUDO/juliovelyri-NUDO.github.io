@@ -30,7 +30,6 @@ Aprendo rápido, lo resuelvo y sigo moviéndome.`,
     maraton: () => {
       const n = new Date(); const d = Math.max(0, Math.round((Date.UTC(2026, 11, 13) - Date.UTC(n.getFullYear(), n.getMonth(), n.getDate())) / 86400000));
       return `faltan ${d} días · ≈535 km desde agosto · pico 60,5 km/semana
-rodilla: se puede correr (regla de las 24 h)
 meta: sub-4. Si el día acompaña, 3:45.`;
     },
     experimentos: () => `editor-video     una frase y un vídeo, sale un reel
@@ -41,7 +40,7 @@ correo           mi correo se revisa solo
 panel-de-vida    una pantalla por la mañana
 limpia-fotos     la máquina propone, yo borro
 sesion-continua  listas de pelis con amigos
-<span class="d">(en el cajón: KARGA, comer según el entreno. De momento, solo un documento.)</span>`,
+<span class="d">(y alguna idea más que todavía no sale del cajón)</span>`,
     reglas: () => `1. si algo es ambiguo, no adivines: pregunta en el informe
 2. anota el antes y el después de cada escritura
 3. nada de publicar, fusionar, enviar, borrar ni gastar sin Julio
